@@ -23,6 +23,7 @@ public class ContentServiceImpl implements ContentService{
     private final Categories_1Repository categories_1Repository;
     private final Categories_2Repository categories_2Repository;
     private final Categories_3Repository categories_3Repository;
+    private final Categories_4Repository categories_4Repository;
     private final ContentDataRepository ckEditorRepository;
     private final ContentDataService ckEditorService;
     private final ContentImagesService contentImagesService;
@@ -52,6 +53,16 @@ public class ContentServiceImpl implements ContentService{
         categories_3Repository.save(category3.get());
         return ResponseEntity.ok().body(content);
     }
+
+    @Override
+    public ResponseEntity<Content> saveNewCategory4Content(UUID category4Id, ContentDTO contentDTO){
+        Optional<Categories4> category4 = categories_4Repository.findById(category4Id);
+        Content content = saveContent(contentDTO);
+        category4.get().getContent().add(content);
+        categories_4Repository.save(category4.get());
+        return ResponseEntity.ok().body(content);
+    }
+    
     @Override
     public Content saveContent(ContentDTO contentDTO){
         System.out.println(contentDTO);
