@@ -13,6 +13,7 @@ public interface ContentService {
     ResponseEntity<Content> saveNewCategory1Content(UUID category1Id, ContentDTO contentDTO);
     ResponseEntity<Content> saveNewCategory2Content(UUID category2Id, ContentDTO contentDTO);
     ResponseEntity<Content> saveNewCategory3Content(UUID category3Id, ContentDTO contentDTO);
+    ResponseEntity<Content> saveNewCategory4Content(UUID category4Id, ContentDTO contentDTO);
 
     Content saveContent(ContentDTO contentDTO);
 
@@ -21,6 +22,7 @@ public interface ContentService {
     ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories1(UUID categoryId, Integer page, String lan, int limit);
     ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories2(UUID categoryId, Integer page, String lan, int limit);
     ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories3(UUID categoryId, Integer page, String lan, int limit);
+    ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories4(UUID categoryId, Integer page, String lan, int limit);
     ResponseEntity<ContentWithDataProjection> getContentWithContentData(UUID id, String lan);
     ResponseEntity<ContentResponseDTO> getGroupOfContents(UUID foreignPartnersId, Integer pageNum, String lan, int limit);
     ResponseEntity<ContentWithAllDataProjection> getContentWithAllData(UUID id);
