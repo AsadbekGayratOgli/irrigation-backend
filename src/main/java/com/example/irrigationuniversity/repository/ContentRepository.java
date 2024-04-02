@@ -16,6 +16,8 @@ public interface ContentRepository extends JpaRepository<Content, UUID> {
     List<ContentProjection> findGroupOfContentsOfCategories2ByLan(UUID categoryId, Integer page,String lan,int limit);
     @Query(value = "select c.id as id, c.created_at as created_at, c.author as author, c.views as views, cd.title as title, cd.lan as lan  from content c join categories3_content cc on c.id = cc.content_id and cc.categories3_id = ?1 join content_data cd on c.id = cd.content_id and cd.lan = ?3 order by c.created_at desc offset (?2 - 1)*6 limit ?4",nativeQuery = true)
     List<ContentProjection> findGroupOfContentsOfCategories3ByLan(UUID categoryId, Integer page,String lan,int limit);
+    @Query(value = "select c.id as id, c.created_at as created_at, c.author as author, c.views as views, cd.title as title, cd.lan as lan  from content c join categories4_content cc on c.id = cc.content_id and cc.categories4_id = ?1 join content_data cd on c.id = cd.content_id and cd.lan = ?3 order by c.created_at desc offset (?2 - 1)*6 limit ?4",nativeQuery = true)
+    List<ContentProjection> findGroupOfContentsOfCategories4ByLan(UUID categoryId, Integer page,String lan,int limit);
     @Query(value = "select c.id as id, c.created_at as created_at, c.author as author, c.views as views, cd.title as title, cd.lan as lan  from content c join categories3_content cc on c.id = cc.content_id and cc.categories3_id = ?1 join content_data cd on c.id = cd.content_id and cd.lan = ?2 order by c.created_at desc ",nativeQuery = true)
     List<ContentWithLessDataProjection> findAllContentsByCategoryId(UUID categoryId,String lan);
     @Query(value = "select * from content c join categories1_content cc on c.id = cc.content_id where cc.categories1_id = ?1",nativeQuery = true)
@@ -28,6 +30,8 @@ public interface ContentRepository extends JpaRepository<Content, UUID> {
     Integer countByCategories2Id(UUID categoryId);
     @Query(value = "select case when count(*) > 0 then (count(*)/6)+1 else 0 end  from content c join categories3_content cc on c.id = cc.content_id where cc.categories3_id = ?1 group by cc.categories3_id;",nativeQuery = true)
     Integer countByCategories3Id(UUID categoryId);
+    @Query(value = "select case when count(*) > 0 then (count(*)/6)+1 else 0 end  from content c join categories4_content cc on c.id = cc.content_id where cc.categories4_id = ?1 group by cc.categories4_id;",nativeQuery = true)
+    Integer countByCategories4Id(UUID categoryId);
     @Query(value = "select c.id as id, c.created_at as created_at, c.author as author, c.views as views from content c where c.id = ?1 ",nativeQuery = true)
     ContentWithAllDataProjection findAllByIdWithAllData(UUID id);
     @Modifying

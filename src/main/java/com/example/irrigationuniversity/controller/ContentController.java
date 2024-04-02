@@ -36,9 +36,9 @@ public class ContentController {
         return contentService.saveNewCategory3Content(categories3Id,contentDTO);
     }
     @PreAuthorize("hasAnyRole('ROLE_SUPERADMIN','ROLE_ADMIN')")
-    @PostMapping("/categories4/{categories3Id}")
-    public ResponseEntity<Content> saveNewCategory4Content(@PathVariable UUID categories3Id, @RequestBody ContentDTO contentDTO){
-        return contentService.saveNewCategory3Content(categories3Id,contentDTO);
+    @PostMapping("/categories4/{categories4Id}")
+    public ResponseEntity<Content> saveNewCategory4Content(@PathVariable UUID categories4Id, @RequestBody ContentDTO contentDTO){
+        return contentService.saveNewCategory4Content(categories4Id,contentDTO);
     }
     @GetMapping("/{lan}/{id}")
     public ResponseEntity<ContentWithDataProjection> getContentWithImagesAndTitleAndBody(@PathVariable String lan, @PathVariable UUID id){
@@ -61,6 +61,12 @@ public class ContentController {
     public ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories3(@PathVariable String lan, @PathVariable UUID categoryId, @PathVariable int pageNum){
         return contentService.getGroupOfContentsOfCategories3(categoryId,pageNum,lan.toUpperCase(),6);
     }
+
+    @GetMapping("/categories4/{lan}/{categoryId}/{pageNum}")
+    public ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories4(@PathVariable String lan, @PathVariable UUID categoryId, @PathVariable int pageNum){
+        return contentService.getGroupOfContentsOfCategories4(categoryId,pageNum,lan.toUpperCase(),6);
+    }
+
     @GetMapping("/news/{lan}")
     public ResponseEntity<ContentResponseDTO> getGroupOfContentsOfNews(@PathVariable String lan){
         UUID newsId = UUID.fromString("3383b09d-2e6a-4a37-b756-1aa10766b2c5");

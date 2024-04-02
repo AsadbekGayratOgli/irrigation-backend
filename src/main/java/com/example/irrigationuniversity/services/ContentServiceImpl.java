@@ -111,6 +111,13 @@ public class ContentServiceImpl implements ContentService{
         List<ContentProjection> groupOfContents = contentRepository.findGroupOfContentsOfCategories3ByLan(categoryId,page,lan,limit);
         return ResponseEntity.ok().body(new ContentResponseDTO(contentRepository.countByCategories3Id(categoryId),groupOfContents));
     }
+
+    @Override
+    public ResponseEntity<ContentResponseDTO> getGroupOfContentsOfCategories4(UUID categoryId, Integer page, String lan, int limit) {
+        List<ContentProjection> groupOfContents = contentRepository.findGroupOfContentsOfCategories4ByLan(categoryId,page,lan,limit);
+        return ResponseEntity.ok().body(new ContentResponseDTO(contentRepository.countByCategories4Id(categoryId),groupOfContents));
+    }
+
     @Override
     public ResponseEntity<ContentWithDataProjection> getContentWithContentData(UUID id, String lan){
         contentRepository.updateViews(id);
@@ -155,13 +162,5 @@ public class ContentServiceImpl implements ContentService{
         return ResponseEntity.ok().body(contentRepository.findGroupOfNewsContents(newsId,id,lan));
     }
 
-//    @Override
-//    public ResponseEntity<ContentWithDataWithoutLogoProjection> getForeignPartnersContentData(String lan) {
-//        return ResponseEntity.ok().body(contentRepository.findByIdWithContentDataWithoutLogo(foreignPartnersId,lan));
-//    }
-//    @Override
-//    public ResponseEntity<List<ContentWithLessDataProjection>> getForeignPartnersContents(String lan) {
-//        return ResponseEntity.ok().body(contentRepository.findAllContentsByCategoryId(foreignPartnersId,lan));
-//    }
 
 }
