@@ -52,6 +52,10 @@ public interface ContentRepository extends JpaRepository<Content, UUID> {
     @Transactional
     @Query(value = "delete from  categories3_content cc where cc.content_id = ?1",nativeQuery = true)
     void deleteFromCategories3_content(UUID contentId);
+    @Modifying
+    @Transactional
+    @Query(value = "delete from  categories4_content cc where cc.content_id = ?1",nativeQuery = true)
+    void deleteFromCategories4_content(UUID contentId);
     @Query(value = "select c.id as id, c.created_at as created_at, c.author as author, c.views as views, cd.title as title, cd.lan as lan  from content c join categories2_content cc on c.id = cc.content_id and cc.categories2_id = ?1 and cc.content_id <> ?2 join content_data cd on c.id = cd.content_id and cd.lan = ?3 order by c.created_at desc limit 5", nativeQuery = true)
     List<ContentProjection> findGroupOfNewsContents(UUID newsId, UUID id, String lan);
 

@@ -85,6 +85,7 @@ public class ContentServiceImpl implements ContentService{
         contentRepository.deleteFromCategories1_content(contentId);
         contentRepository.deleteFromCategories2_content(contentId);
         contentRepository.deleteFromCategories3_content(contentId);
+        contentRepository.deleteFromCategories4_content(contentId);
         contentRepository.deleteById(contentId);
         return ResponseEntity.ok().body("Successfully deleted!");
     }
@@ -131,6 +132,8 @@ public class ContentServiceImpl implements ContentService{
             return getGroupOfContentsOfCategories2(categoryId,pageNum,lan,limit);
         } else if (categories_3Repository.findById(categoryId).isPresent()) {
             return getGroupOfContentsOfCategories3(categoryId,pageNum,lan,limit);
+        }else if (categories_4Repository.findById(categoryId).isPresent()) {
+            return getGroupOfContentsOfCategories4(categoryId,pageNum,lan,limit);
         }
         return ResponseEntity.notFound().build();
     }

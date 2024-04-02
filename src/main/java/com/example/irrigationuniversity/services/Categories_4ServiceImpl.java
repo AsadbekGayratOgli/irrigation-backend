@@ -64,46 +64,4 @@ public class Categories_4ServiceImpl implements Categories_4Service{
 
     }
 }
-//    private final Categories_2Repository categories_2Repository;
-//    private final Categories_3Repository categories_3Repository;
-//    private final Categories3NameRepository categories3NameRepository;
-//    @Override
-//    public ResponseEntity<CategoriesProjection> addNewCategory(UUID categories2Id, Category3NamesArrayDTO category3NamesClass){
-//        Categories3 categories3 = new Categories3();
-//        categories3.setCreatedAt(LocalDateTime.now());
-//        categories3.setCategories2(categories_2Repository.findById(categories2Id).get());
-//        categories_3Repository.save(categories3);
-//        for (Category3NamesDTO categories3NameDTO: category3NamesClass.getCategory3NamesDTO()) {
-//            categories3NameDTO.getCategories3Names().setCategories3(categories3);
-//            categories3NameRepository.save(categories3NameDTO.getCategories3Names());
-//        }
-//        return ResponseEntity.ok().body(categories_3Repository.findByIdAndLan(categories3.getId()));
-//    }
-//    @Override
-//    public ResponseEntity<List<CategoriesLanProjection>> getCategoryWithAllNames(UUID id){
-//        return ResponseEntity.ok().body(categories_3Repository.findByIdWithAllNames(id));
-//    }
-//    @Override
-//    public ResponseEntity<String> deleteCategory(UUID id){
-//        categories3NameRepository.deleteByCategory3Id(id);
-//        categories_3Repository.deleteById(id);
-//        return ResponseEntity.ok().body("Successfully deleted!");
-//    }
-//    @Override
-//    public String deleteByCategories2(UUID category2Id){
-//        categories3NameRepository.deleteByCategory2Id(category2Id);
-//        categories_3Repository.deleteByCategories2(category2Id);
-//        return "Successfully deleted!";
-//    }
-//
-//    @Override
-//    public ResponseEntity<CategoriesProjection> editCategory(UUID id, Category3NamesArrayDTO category3NamesArrayDTO){
-//        Optional<Categories3> categories3 = categories_3Repository.findById(id);
-//        for (Category3NamesDTO category3NameDTO : category3NamesArrayDTO.getCategory3NamesDTO()) {
-//            category3NameDTO.getCategories3Names().setId(category3NameDTO.getId());
-//            category3NameDTO.getCategories3Names().setCategories3(categories3.get());
-//            categories3NameRepository.save(category3NameDTO.getCategories3Names());
-//        }
-//        return ResponseEntity.ok().body(categories_3Repository.findByIdAndLan(id));
-//
-//    }
+
