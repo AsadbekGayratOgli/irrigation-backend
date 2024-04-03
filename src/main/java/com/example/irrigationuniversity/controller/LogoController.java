@@ -27,7 +27,6 @@ public class LogoController {
     }
     @GetMapping("/{url}/{id}")
     public void getLogoImage(@PathVariable String url,@PathVariable String id, HttpServletResponse httpServletResponse){
-        System.out.println(url);
         logoService.getLogoImage(url+"/"+id,httpServletResponse);
     }
 }

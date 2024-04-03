@@ -31,7 +31,7 @@ public class FileServiceImpl implements FileService{
     public String saveFile(String packageName, MultipartFile file) throws IOException {
         String id = UUID.randomUUID().toString();
         try {
-            File output = new File("src/main/java/com/example/irrigationuniversity/resources/"+packageName+"_resources/" + id + ".webp");
+            File output = new File("C:/Users/Администратор/СайтTiiamebb/resources/"+packageName+"_resources/" + id + ".webp");
 //             Read the input image
 
 
@@ -80,14 +80,14 @@ public class FileServiceImpl implements FileService{
     @SneakyThrows
     @Override
     public void getFile(String url, HttpServletResponse httpServletResponse){
-        InputStream inputStream = new FileInputStream("src/main/java/com/example/irrigationuniversity/resources/"+url+".webp");
+        InputStream inputStream = new FileInputStream("C:/Users/Администратор/СайтTiiamebb/resources/"+url+".webp");
         inputStream.transferTo(httpServletResponse.getOutputStream());
         inputStream.close();
         httpServletResponse.getOutputStream().close();
     }
     @Override
     public ResponseEntity<String > deleteFiles(String url){
-        Path path = Paths.get("src/main/java/com/example/irrigationuniversity/resources/"+url+".webp");
+        Path path = Paths.get("C:/Users/Администратор/СайтTiiamebb/resources/"+url+".webp");
         try {
             Files.delete(path);
         } catch (IOException e) {
