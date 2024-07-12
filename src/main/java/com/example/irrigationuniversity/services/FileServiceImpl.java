@@ -1,12 +1,10 @@
 package com.example.irrigationuniversity.services;
 
-import ij.ImagePlus;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -18,10 +16,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import ij.ImagePlus;
-import ij.process.ImageProcessor;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Service
@@ -32,23 +26,17 @@ public class FileServiceImpl implements FileService{
         String id = UUID.randomUUID().toString();
         try {
             File output = new File("C:/Users/Администратор/СайтTiiamebb/resources/"+packageName+"_resources/" + id + ".webp");
-//             Read the input image
 
-
+            // Convert image to webp
             BufferedImage inputImage = ImageIO.read(file.getInputStream());
-            ImagePlus imagePlus = new ImagePlus(file.getOriginalFilename(), inputImage);
-
-            // Create a new BufferedImage with TYPE_3BYTE_BGR format
             BufferedImage outputImage = new BufferedImage(inputImage.getWidth(), inputImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
-
-            // Copy the input image to the output image
             outputImage.getGraphics().drawImage(inputImage, 0, 0, null);
-            // Get a WebP ImageWriter
+
             ImageWriter writer = ImageIO.getImageWritersByMIMEType("image/webp").next();
-            // Configure the WebP ImageWriteParam
             ImageWriteParam writeParam = writer.getDefaultWriteParam();
             writeParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
             writeParam.setCompressionType("Lossy");
+
             if(file.getSize()/1024>400) {
                 writeParam.setCompressionQuality(0.5f);
                 System.out.println(0.5);
@@ -57,16 +45,10 @@ public class FileServiceImpl implements FileService{
                 System.out.println(0.7);
             }
 
-            // Create an ImageOutputStream to write the output image
             ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(output);
-
-            // Set the output format to WebP
             writer.setOutput(imageOutputStream);
-
-            // Write the input image as WebP
             writer.write(null, new javax.imageio.IIOImage(outputImage, null, null), writeParam);
 
-            // Clean up resources
             imageOutputStream.close();
             writer.dispose();
 
@@ -85,6 +67,7 @@ public class FileServiceImpl implements FileService{
         inputStream.close();
         httpServletResponse.getOutputStream().close();
     }
+
     @Override
     public ResponseEntity<String > deleteFiles(String url){
         Path path = Paths.get("C:/Users/Администратор/СайтTiiamebb/resources/"+url+".webp");
